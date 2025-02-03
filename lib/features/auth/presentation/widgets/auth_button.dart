@@ -2,7 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:todos/core/theme/app_palette.dart';
 
 class AuthButton extends StatelessWidget {
-  const AuthButton({super.key});
+  final String buttonText;
+  const AuthButton({
+    super.key,
+    required this.buttonText,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -19,12 +23,12 @@ class AuthButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: () {},
         style: ElevatedButton.styleFrom(
-          fixedSize: Size(400, 60),
+          fixedSize: Size(390, 60),
           backgroundColor: AppPalette.transparentColor,
           shadowColor: AppPalette.transparentColor,
         ),
         child: Text(
-          "Sign Up",
+          buttonText,
           style: TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.w600,

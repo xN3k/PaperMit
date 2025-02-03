@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todos/core/theme/theme.dart';
+import 'package:todos/features/auth/presentation/pages/signin_page.dart';
 import 'package:todos/features/auth/presentation/pages/signup_page.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'TodyList',
       theme: AppTheme.darkThemeMode,
-      home: const SignupPage(),
+      home: const SigninPage(),
     );
   }
 }
