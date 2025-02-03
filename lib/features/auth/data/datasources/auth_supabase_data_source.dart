@@ -3,7 +3,7 @@ import 'dart:developer';
 import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todos/core/error/exception.dart';
 
-abstract interface class AuthSupabaseDataSourceRepository {
+abstract interface class AuthSupabaseDataSource {
   Future<String> signInWithEmailPassword({
     required String email,
     required String password,
@@ -16,10 +16,9 @@ abstract interface class AuthSupabaseDataSourceRepository {
   });
 }
 
-class AuthSupabaseDataSourceRepositoryImp
-    implements AuthSupabaseDataSourceRepository {
+class AuthSupabaseDataSourceImp implements AuthSupabaseDataSource {
   final SupabaseClient supabaseClient;
-  const AuthSupabaseDataSourceRepositoryImp(this.supabaseClient);
+  const AuthSupabaseDataSourceImp(this.supabaseClient);
 
   @override
   Future<String> signUpWithEmailPassword({

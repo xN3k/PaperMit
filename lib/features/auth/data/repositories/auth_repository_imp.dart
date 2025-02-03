@@ -1,11 +1,11 @@
 import 'package:fpdart/src/either.dart';
 import 'package:todos/core/error/exception.dart';
 import 'package:todos/core/error/failure.dart';
-import 'package:todos/features/auth/data/datasources/auth_supabase_data_source_repository.dart';
+import 'package:todos/features/auth/data/datasources/auth_supabase_data_source.dart';
 import 'package:todos/features/auth/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImp implements AuthRepository {
-  final AuthSupabaseDataSourceRepository remoteDataSource;
+  final AuthSupabaseDataSource remoteDataSource;
 
   const AuthRepositoryImp(this.remoteDataSource);
 
