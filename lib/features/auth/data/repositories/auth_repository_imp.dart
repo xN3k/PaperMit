@@ -1,7 +1,8 @@
-import 'package:fpdart/src/either.dart';
+import 'package:fpdart/fpdart.dart';
 import 'package:todos/core/error/exception.dart';
 import 'package:todos/core/error/failure.dart';
 import 'package:todos/features/auth/data/datasources/auth_supabase_data_source.dart';
+import 'package:todos/features/auth/domain/entities/user.dart';
 import 'package:todos/features/auth/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImp implements AuthRepository {
@@ -10,7 +11,7 @@ class AuthRepositoryImp implements AuthRepository {
   const AuthRepositoryImp(this.remoteDataSource);
 
   @override
-  Future<Either<Failure, String>> signInWithEmailPassword({
+  Future<Either<Failure, User>> signInWithEmailPassword({
     required String email,
     required String password,
   }) {
@@ -19,7 +20,7 @@ class AuthRepositoryImp implements AuthRepository {
   }
 
   @override
-  Future<Either<Failure, String>> signUpWithEmailPassword(
+  Future<Either<Failure, User>> signUpWithEmailPassword(
       {required String email,
       required String password,
       required String name}) async {
