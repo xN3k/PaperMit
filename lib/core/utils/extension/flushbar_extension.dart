@@ -28,3 +28,30 @@ extension FlushBarErrorMessage on BuildContext {
     );
   }
 }
+
+extension FlushBarSuccessMessage on BuildContext {
+  void flushBarSuccessMessage({
+    required String message,
+  }) {
+    showFlushbar(
+      context: this,
+      flushbar: Flushbar(
+        forwardAnimationCurve: Curves.decelerate,
+        margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        padding: const EdgeInsets.all(15),
+        message: message,
+        duration: Duration(seconds: 3),
+        flushbarPosition: FlushbarPosition.TOP,
+        borderRadius: BorderRadius.circular(10),
+        backgroundColor: Colors.green.shade800,
+        reverseAnimationCurve: Curves.easeInOut,
+        positionOffset: 20,
+        icon: Icon(
+          Icons.check,
+          size: 28,
+          color: Colors.white,
+        ),
+      )..show(this),
+    );
+  }
+}

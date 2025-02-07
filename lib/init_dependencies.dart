@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todos/core/secrets/supabase_secret.dart';
 import 'package:todos/features/auth/data/datasources/auth_supabase_data_source.dart';
 import 'package:todos/features/auth/domain/repository/auth_repository.dart';
+import 'package:todos/features/auth/domain/usecases/user_sign_in.dart';
 import 'package:todos/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:todos/features/auth/presentation/bloc/auth_bloc.dart';
 
@@ -45,10 +46,16 @@ void _initAuth() {
     ),
   );
 
+  serviceLocator.registerFactory(
+    () => UserSignIn(
+      serviceLocator(),
+    ),
+  );
   // auth bloc
   serviceLocator.registerLazySingleton(
     () => AuthBloc(
       userSignUp: serviceLocator(),
+      userSignIn: serviceLocator(),
     ),
   );
 }

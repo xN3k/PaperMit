@@ -43,6 +43,10 @@ class _SignupPageState extends State<SignupPage> {
             if (state is AuthFailure) {
               context.flushBarErrorMessage(message: state.message);
             }
+            if (state is AuthSuccess) {
+              context.flushBarSuccessMessage(
+                  message: "Successfully signup, now you can sign in");
+            }
           },
           builder: (context, state) {
             if (state is AuthLoading) {
