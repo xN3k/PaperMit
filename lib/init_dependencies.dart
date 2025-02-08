@@ -3,6 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart';
 import 'package:todos/core/secrets/supabase_secret.dart';
 import 'package:todos/features/auth/data/datasources/auth_supabase_data_source.dart';
 import 'package:todos/features/auth/domain/repository/auth_repository.dart';
+import 'package:todos/features/auth/domain/usecases/current_user.dart';
 import 'package:todos/features/auth/domain/usecases/user_sign_in.dart';
 import 'package:todos/features/auth/domain/usecases/user_sign_up.dart';
 import 'package:todos/features/auth/presentation/bloc/auth_bloc.dart';
@@ -26,36 +27,43 @@ Future<void> initDependencies() async {
 
 void _initAuth() {
   // auth data source
-  serviceLocator.registerFactory<AuthSupabaseDataSource>(
-    () => AuthSupabaseDataSourceImp(
-      serviceLocator(),
-    ),
-  );
+  serviceLocator
+    ..registerFactory<AuthSupabaseDataSource>(
+      () => AuthSupabaseDataSourceImp(
+        serviceLocator(),
+      ),
+    )
 
-  // auth repository
-  serviceLocator.registerFactory<AuthRepository>(
-    () => AuthRepositoryImp(
-      serviceLocator(),
-    ),
-  );
+    // auth repository
+    ..registerFactory<AuthRepository>(
+      () => AuthRepositoryImp(
+        serviceLocator(),
+      ),
+    )
 
-  // user signup usecase
-  serviceLocator.registerFactory(
-    () => UserSignUp(
-      serviceLocator(),
-    ),
-  );
+    // usecase
+    ..registerFactory(
+      () => UserSignUp(
+        serviceLocator(),
+      ),
+    )
+    ..registerFactory(
+      () => UserSignIn(
+        serviceLocator(),
+      ),
+    )
+    ..registerFactory(
+      () => CurrentUser(
+        serviceLocator(),
+      ),
+    )
 
-  serviceLocator.registerFactory(
-    () => UserSignIn(
-      serviceLocator(),
-    ),
-  );
-  // auth bloc
-  serviceLocator.registerLazySingleton(
-    () => AuthBloc(
-      userSignUp: serviceLocator(),
-      userSignIn: serviceLocator(),
-    ),
-  );
+    // auth bloc
+    ..registerLazySingleton(
+      () => AuthBloc(
+        userSignUp: serviceLocator(),
+        userSignIn: serviceLocator(),
+        currentUser: serviceLocator(),
+      ),
+    );
 }
