@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:todos/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:todos/core/usecase/usecase.dart';
-import 'package:todos/features/auth/domain/entities/user.dart';
+import 'package:todos/core/common/entities/user.dart';
 import 'package:todos/features/auth/domain/usecases/current_user.dart';
 import 'package:todos/features/auth/domain/usecases/user_sign_in.dart';
 import 'package:todos/features/auth/domain/usecases/user_sign_up.dart';
@@ -13,13 +14,16 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final UserSignUp _userSignUp;
   final UserSignIn _userSignIn;
   final CurrentUser _currentUser;
+  final AppUserCubit _appUserCubit;
   AuthBloc({
     required UserSignUp userSignUp,
     required UserSignIn userSignIn,
     required CurrentUser currentUser,
+    required AppUserCubit appUserCubit,
   })  : _userSignUp = userSignUp,
         _userSignIn = userSignIn,
         _currentUser = currentUser,
+        _appUserCubit = appUserCubit,
         super(AuthInitial()) {
     on<AuthSignUp>(_onAuthSignUp);
     on<AuthSignIn>(_onAuthSignIn);
@@ -32,10 +36,10 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   ) async {
     final response = await _currentUser(NoParams());
 
-    response.fold((l) => emit(AuthFailure(l.message)), (r) {
-      print(r.email);
-      emit(AuthSuccess(r));
-    });
+    response.fold(
+      (l) => emit(AuthFailure(l.message)),
+      (r) => _emitAuthState(r, emit),
+    );
   }
 
   void _onAuthSignUp(AuthSignUp event, Emitter<AuthState> emit) async {
@@ -50,7 +54,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     response.fold(
       (failure) => emit(AuthFailure(failure.message)),
-      (user) => emit(AuthSuccess(user)),
+      (user) => _emitAuthState(user, emit),
     );
   }
 
@@ -63,7 +67,12 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
 
     response.fold(
       (l) => emit(AuthFailure(l.message)),
-      (r) => emit(AuthSuccess(r)),
+      (r) => _emitAuthState(r, emit),
     );
+  }
+
+  void _emitAuthState(User user, Emitter<AuthState> emit) {
+    _appUserCubit.updateUser(user);
+    emit(AuthSuccess(user));
   }
 }

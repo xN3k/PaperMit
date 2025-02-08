@@ -2,7 +2,7 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:todos/core/error/failure.dart';
 import 'package:todos/core/usecase/usecase.dart';
-import 'package:todos/features/auth/domain/entities/user.dart';
+import 'package:todos/core/common/entities/user.dart';
 import 'package:todos/features/auth/domain/repository/auth_repository.dart';
 
 class UserSignIn implements UseCase<User, UserSignInParams> {

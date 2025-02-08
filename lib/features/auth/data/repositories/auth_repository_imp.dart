@@ -3,7 +3,7 @@ import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:todos/core/error/exception.dart';
 import 'package:todos/core/error/failure.dart';
 import 'package:todos/features/auth/data/datasources/auth_supabase_data_source.dart';
-import 'package:todos/features/auth/domain/entities/user.dart';
+import 'package:todos/core/common/entities/user.dart';
 import 'package:todos/features/auth/domain/repository/auth_repository.dart';
 
 class AuthRepositoryImp implements AuthRepository {
