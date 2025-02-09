@@ -35,13 +35,10 @@ class _SigninPageState extends State<SigninPage> {
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: BlocConsumer<AuthBloc, AuthState>(
+          buildWhen: (previous, current) => previous != current,
           listener: (context, state) {
             if (state is AuthFailure) {
               context.flushBarErrorMessage(message: state.message);
-            }
-            if (state is AuthSuccess) {
-              context.flushBarSuccessMessage(
-                  message: "User Sign In Successful");
             }
           },
           builder: (context, state) {

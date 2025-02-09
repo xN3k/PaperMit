@@ -39,6 +39,7 @@ class _SignupPageState extends State<SignupPage> {
       body: Padding(
         padding: const EdgeInsets.all(24),
         child: BlocConsumer<AuthBloc, AuthState>(
+          buildWhen: (previous, current) => previous != current,
           listener: (context, state) {
             if (state is AuthFailure) {
               context.flushBarErrorMessage(message: state.message);
