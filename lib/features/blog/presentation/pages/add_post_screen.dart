@@ -16,6 +16,7 @@ class AddPostScreen extends StatefulWidget {
 class _AddPostScreenState extends State<AddPostScreen> {
   final _blogTitle = TextEditingController();
   final _blogContent = TextEditingController();
+  List<String> selectedTopic = [];
 
   @override
   void dispose() {
@@ -79,10 +80,27 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 ]
                     .map((e) => Padding(
                           padding: const EdgeInsets.all(8.0),
-                          child: Chip(
-                            label: Text(e),
-                            side: const BorderSide(
-                              color: AppPalette.borderColor,
+                          child: GestureDetector(
+                            onTap: () {
+                              if (selectedTopic.contains(e)) {
+                                selectedTopic.remove(e);
+                              } else {
+                                selectedTopic.add(e);
+                              }
+                              setState(() {});
+                            },
+                            child: Chip(
+                              label: Text(e),
+                              color: selectedTopic.contains(e)
+                                  ? const WidgetStatePropertyAll(
+                                      AppPalette.gradient1,
+                                    )
+                                  : null,
+                              side: selectedTopic.contains(e)
+                                  ? null
+                                  : const BorderSide(
+                                      color: AppPalette.borderColor,
+                                    ),
                             ),
                           ),
                         ))
