@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todos/core/common/widgets/loader.dart';
 import 'package:todos/core/theme/app_palette.dart';
-import 'package:todos/core/utils/extension/flushbar_extension.dart';
+import 'package:todos/core/extension/flushbar_extension.dart';
 import 'package:todos/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todos/features/auth/presentation/pages/signin_page.dart';
 import 'package:todos/features/auth/presentation/widgets/auth_button.dart';
