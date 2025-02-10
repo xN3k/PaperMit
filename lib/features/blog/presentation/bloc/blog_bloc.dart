@@ -23,8 +23,11 @@ class BlogBloc extends Bloc<BlogEvent, BlogState> {
           topics: event.topics),
     );
 
-    return response.fold(
-      (l) => emit(BlogFailure(l.message)),
+    response.fold(
+      (l) {
+        print(l.message);
+        emit(BlogFailure(l.message));
+      },
       (r) => emit(BlogSuccess()),
     );
   }

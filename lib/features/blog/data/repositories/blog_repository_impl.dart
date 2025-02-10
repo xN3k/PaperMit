@@ -45,7 +45,7 @@ class BlogRepositoryImpl implements BlogRepository {
       return right(uploadedBlog);
     } on ServerException catch (e) {
       return left(
-        Failure(e.toString()),
+        Failure(e.message),
       );
     }
   }

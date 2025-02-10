@@ -4,6 +4,7 @@ import 'package:todos/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:todos/core/theme/theme.dart';
 import 'package:todos/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todos/features/auth/presentation/pages/signin_page.dart';
+import 'package:todos/features/blog/presentation/bloc/blog_bloc.dart';
 import 'package:todos/features/blog/presentation/pages/blog_page.dart';
 import 'package:todos/init_dependencies.dart';
 
@@ -17,6 +18,12 @@ void main() async {
       ),
       BlocProvider(
         create: (_) => serviceLocator<AuthBloc>(),
+      ),
+      BlocProvider(
+        create: (_) => serviceLocator<AuthBloc>(),
+      ),
+      BlocProvider(
+        create: (_) => serviceLocator<BlogBloc>(),
       ),
     ],
     child: const MyApp(),
