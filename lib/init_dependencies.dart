@@ -11,6 +11,7 @@ import 'package:todos/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todos/features/blog/data/datasources/blog_remote_data_source.dart';
 import 'package:todos/features/blog/data/repositories/blog_repository_impl.dart';
 import 'package:todos/features/blog/domain/repositories/blog_repository.dart';
+import 'package:todos/features/blog/domain/usecases/fetch_blog.dart';
 import 'package:todos/features/blog/domain/usecases/upload_blog.dart';
 import 'package:todos/features/blog/presentation/bloc/blog_bloc.dart';
 
@@ -95,9 +96,17 @@ void _initBlog() {
     ..registerFactory(
       () => UploadBlog(serviceLocator()),
     )
+    ..registerFactory(
+      () => FetchBlog(
+        serviceLocator(),
+      ),
+    )
 
     // bloc
     ..registerLazySingleton(
-      () => BlogBloc(serviceLocator()),
+      () => BlogBloc(
+        uploadBlog: serviceLocator(),
+        fetchBlog: serviceLocator(),
+      ),
     );
 }

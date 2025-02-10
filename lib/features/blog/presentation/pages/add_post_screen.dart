@@ -45,7 +45,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         selectedTopic.isNotEmpty &&
         image != null) {
       context.read<BlogBloc>().add(
-            PostUpload(
+            BlogUpload(
               posterId: posterId,
               title: blogTitle.text.trim(),
               content: blogContent.text.trim(),
@@ -82,7 +82,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
         listener: (context, state) {
           if (state is BlogFailure) {
             context.flushBarErrorMessage(message: state.error);
-          } else if (state is BlogSuccess) {
+          } else if (state is BlogUploadSuccess) {
             Navigator.pushAndRemoveUntil(
               context,
               BlogPage.route(),
