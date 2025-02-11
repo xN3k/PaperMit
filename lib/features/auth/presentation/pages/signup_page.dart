@@ -7,6 +7,7 @@ import 'package:todos/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todos/features/auth/presentation/pages/signin_page.dart';
 import 'package:todos/features/auth/presentation/widgets/auth_button.dart';
 import 'package:todos/features/auth/presentation/widgets/auth_field.dart';
+import 'package:todos/features/blog/presentation/pages/blog_page.dart';
 
 class SignupPage extends StatefulWidget {
   static route() => MaterialPageRoute(
@@ -47,7 +48,10 @@ class _SignupPageState extends State<SignupPage> {
               }
               if (state is AuthSuccess) {
                 context.flushBarSuccessMessage(
-                    message: "Successfully signup, now you can sign in");
+                    message: "Signup successful, redirecting to home");
+                Future.delayed(const Duration(seconds: 2), () {
+                  Navigator.push(context, BlogPage.route());
+                });
               }
             },
             builder: (context, state) {
