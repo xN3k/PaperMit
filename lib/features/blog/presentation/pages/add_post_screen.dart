@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:todos/core/common/cubits/app_user/app_user_cubit.dart';
 import 'package:todos/core/common/widgets/loader.dart';
+import 'package:todos/core/constants/constants.dart';
 import 'package:todos/core/extension/flushbar_extension.dart';
 import 'package:todos/core/theme/app_palette.dart';
 import 'package:todos/core/utils/pick_image.dart';
@@ -150,15 +151,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                     SingleChildScrollView(
                       scrollDirection: Axis.horizontal,
                       child: Row(
-                        children: [
-                          'Technology',
-                          'Business',
-                          'Programming',
-                          'Arts',
-                          'Flutter',
-                          'Food',
-                          'Diet',
-                        ]
+                        children: Constants.topics
                             .map((e) => Padding(
                                   padding: const EdgeInsets.all(8.0),
                                   child: GestureDetector(

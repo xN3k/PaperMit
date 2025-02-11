@@ -1,5 +1,6 @@
 import 'package:fpdart/fpdart.dart';
 import 'package:supabase_flutter/supabase_flutter.dart' as sb;
+import 'package:todos/core/constants/constants.dart';
 import 'package:todos/core/error/exception.dart';
 import 'package:todos/core/error/failure.dart';
 import 'package:todos/core/network/connection_checker.dart';
@@ -77,7 +78,7 @@ class AuthRepositoryImp implements AuthRepository {
   ) async {
     try {
       if (!await (connectionChecker.isConnected)) {
-        return left(Failure("Not connected to internet"));
+        return left(Failure(Constants.noConnectionErrorMessage));
       }
       final user = await fn();
       return right(user);
