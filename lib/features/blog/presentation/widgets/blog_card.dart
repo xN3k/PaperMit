@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todos/core/utils/calculate_reading_time.dart';
 import 'package:todos/features/blog/domain/entities/blog.dart';
+import 'package:todos/features/blog/presentation/pages/blog_post_screen.dart';
 
 class BlogCard extends StatelessWidget {
   final Blog blog;
@@ -15,7 +16,7 @@ class BlogCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.push(context, BlogPostSc.route(blog));
+        Navigator.push(context, BlogPostScreen.route(blog));
       },
       child: Container(
         height: 200,

@@ -156,6 +156,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
                           'Programming',
                           'Arts',
                           'Flutter',
+                          'Food',
+                          'Diet',
                         ]
                             .map((e) => Padding(
                                   padding: const EdgeInsets.all(8.0),
