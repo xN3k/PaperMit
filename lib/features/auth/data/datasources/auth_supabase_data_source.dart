@@ -27,6 +27,28 @@ class AuthSupabaseDataSourceImp implements AuthSupabaseDataSource {
   @override
   Session? get currentUserSession => supabaseClient.auth.currentSession;
 
+  // login
+  @override
+  Future<UserModel> signInWithEmailPassword(
+      {required String email, required String password}) async {
+    try {
+      final response = await supabaseClient.auth.signInWithPassword(
+        password: password,
+        email: email,
+      );
+      if (response.user == null) {
+        throw ServerException("User is null");
+      }
+      return UserModel.fromJson(response.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerException(e.toString());
+    } catch (e) {
+      log(e.toString());
+      throw ServerException(e.toString());
+    }
+  }
+
+  // sign up
   @override
   Future<UserModel> signUpWithEmailPassword({
     required String name,
@@ -45,30 +67,15 @@ class AuthSupabaseDataSourceImp implements AuthSupabaseDataSource {
         throw ServerException("User is null");
       }
       return UserModel.fromJson(response.user!.toJson());
+    } on AuthException catch (e) {
+      throw ServerException(e.toString());
     } catch (e) {
       log(e.toString());
       throw ServerException(e.toString());
     }
   }
 
-  @override
-  Future<UserModel> signInWithEmailPassword(
-      {required String email, required String password}) async {
-    try {
-      final response = await supabaseClient.auth.signInWithPassword(
-        password: password,
-        email: email,
-      );
-      if (response.user == null) {
-        throw ServerException("User is null");
-      }
-      return UserModel.fromJson(response.user!.toJson());
-    } catch (e) {
-      log(e.toString());
-      throw ServerException(e.toString());
-    }
-  }
-
+  // get user
   @override
   Future<UserModel?> getCurrentData() async {
     try {
@@ -82,6 +89,8 @@ class AuthSupabaseDataSourceImp implements AuthSupabaseDataSource {
         );
       }
       return null;
+    } on PostgrestException catch (e) {
+      throw ServerException(e.toString());
     } catch (e) {
       throw ServerException(e.toString());
     }

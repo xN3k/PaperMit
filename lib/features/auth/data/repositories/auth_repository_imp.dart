@@ -1,5 +1,4 @@
 import 'package:fpdart/fpdart.dart';
-import 'package:supabase_flutter/supabase_flutter.dart' as sb;
 import 'package:todos/core/constants/constants.dart';
 import 'package:todos/core/error/exception.dart';
 import 'package:todos/core/error/failure.dart';
@@ -82,8 +81,6 @@ class AuthRepositoryImp implements AuthRepository {
       }
       final user = await fn();
       return right(user);
-    } on sb.AuthException catch (e) {
-      return left(Failure(e.message));
     } on ServerException catch (e) {
       return left(Failure(e.message));
     }
