@@ -45,13 +45,12 @@ class _SignupPageState extends State<SignupPage> {
             listener: (context, state) {
               if (state is AuthFailure) {
                 context.flushBarErrorMessage(message: state.message);
-              }
-              if (state is AuthSuccess) {
-                context.flushBarSuccessMessage(
-                    message: "Signup successful, redirecting to home");
-                Future.delayed(const Duration(seconds: 2), () {
-                  Navigator.push(context, BlogPage.route());
-                });
+              } else if (state is AuthSuccess) {
+                Navigator.pushAndRemoveUntil(
+                  context,
+                  BlogPage.route(),
+                  (route) => false,
+                );
               }
             },
             builder: (context, state) {

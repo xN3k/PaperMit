@@ -7,6 +7,7 @@ import 'package:todos/features/auth/presentation/bloc/auth_bloc.dart';
 import 'package:todos/features/auth/presentation/pages/signup_page.dart';
 import 'package:todos/features/auth/presentation/widgets/auth_button.dart';
 import 'package:todos/features/auth/presentation/widgets/auth_field.dart';
+import 'package:todos/features/blog/presentation/pages/blog_page.dart';
 
 class SigninPage extends StatefulWidget {
   static route() => MaterialPageRoute(builder: (context) => const SigninPage());
@@ -39,6 +40,12 @@ class _SigninPageState extends State<SigninPage> {
           listener: (context, state) {
             if (state is AuthFailure) {
               context.flushBarErrorMessage(message: state.message);
+            } else if (state is AuthSuccess) {
+              Navigator.pushAndRemoveUntil(
+                context,
+                BlogPage.route(),
+                (route) => false,
+              );
             }
           },
           builder: (context, state) {
