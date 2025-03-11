@@ -1,0 +1,2 @@
+/home/xn3k/Documents/Flutter_projects/PaperMit/android/app/.cxx/Debug/36213c45/armeabi-v7a/CMakeFiles/edit_cache.dir
+/home/xn3k/Documents/Flutter_projects/PaperMit/android/app/.cxx/Debug/36213c45/armeabi-v7a/CMakeFiles/rebuild_cache.dir

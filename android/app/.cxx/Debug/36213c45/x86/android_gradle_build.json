@@ -1,0 +1,28 @@
+{
+  "buildFiles": [
+    "/home/xn3k/development/flutter/packages/flutter_tools/gradle/src/main/groovy/CMakeLists.txt"
+  ],
+  "cleanCommandsComponents": [
+    [
+      "/home/xn3k/Android/Sdk/cmake/3.22.1/bin/ninja",
+      "-C",
+      "/home/xn3k/Documents/Flutter_projects/PaperMit/android/app/.cxx/Debug/36213c45/x86",
+      "clean"
+    ]
+  ],
+  "buildTargetsCommandComponents": [
+    "/home/xn3k/Android/Sdk/cmake/3.22.1/bin/ninja",
+    "-C",
+    "/home/xn3k/Documents/Flutter_projects/PaperMit/android/app/.cxx/Debug/36213c45/x86",
+    "{LIST_OF_TARGETS_TO_BUILD}"
+  ],
+  "libraries": {},
+  "toolchains": {
+    "toolchain": {
+      "cCompilerExecutable": "/home/xn3k/Android/Sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/clang.lld",
+      "cppCompilerExecutable": "/home/xn3k/Android/Sdk/ndk/26.3.11579264/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++.lld"
+    }
+  },
+  "cFileExtensions": [],
+  "cppFileExtensions": []
+}

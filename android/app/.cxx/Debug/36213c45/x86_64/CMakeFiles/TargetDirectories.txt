@@ -1,0 +1,2 @@
+/home/xn3k/Documents/Flutter_projects/PaperMit/android/app/.cxx/Debug/36213c45/x86_64/CMakeFiles/edit_cache.dir
+/home/xn3k/Documents/Flutter_projects/PaperMit/android/app/.cxx/Debug/36213c45/x86_64/CMakeFiles/rebuild_cache.dir
